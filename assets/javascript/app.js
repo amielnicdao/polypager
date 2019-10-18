@@ -1,5 +1,5 @@
 // var of what I need to keep track of
-// function to reset game
+// function to reset game and start game
 // function to check if winner got the answer right or not
 // function to add to wins or losses or unanswered 
 // some sort of loop or function that goes through each question
@@ -43,6 +43,42 @@ $(document).ready(function () {
 			answer: "Pokedex",
 			image: "img src='assets/images/pokedex.png' class='img'>"
 		},
-	]
+	];
 
+	function startGame() {
+		$("#game").text(time);
+		$("#startGame").hide();
+		questionList();
+		countdown(); //make this function
+		timeZero();
+	}
+
+	function win() {
+		$("#game").text("That's right!");
+		correct++;
+		var answer = questionArray[questionList].answer;
+		$("#game").append("<img src='questionArray[questionList].image'>");
+		setTimeout(nextQuestion,3000);
+		questionList++;
+	}
+
+	function lose() {
+		$("#game").text("That's incorrect!");
+		wrong++;
+		var answer = questionArray[questionList].answer;
+		$("#game").append("<p>The answer is" + answer + "<img src='questionArray[questionList].image'>");
+		setTimeout(nextQuestion,3000);
+		questionList++;
+	}
+
+	function timeZero() {
+		if (time === 0) {
+			$("#game").text("You're out of time!");	
+			unanswered++;
+			var answer = questionArray[questionList].answer;
+		$("#game").append("<p>The answer is" + answer + "<img src='questionArray[questionList].image'>");
+		setTimeout(nextQuestion,3000);
+		questionList++;
+		}
+	}
 })
