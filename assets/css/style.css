@@ -1,9 +1,5 @@
-.jumbotron {
-    background: red;
-}
 
-img {
-    width: 200px;
-    height: 200px;
-    
+body {
+    text-align: center;
+    background-color: yellow;
 }
