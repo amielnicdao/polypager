@@ -1,13 +1,6 @@
-// var of what I need to keep track of
-// function to reset game and start game
-// function to check if winner got the answer right or not
-// function to add to wins or losses or unanswered 
-// some sort of loop or function that goes through each question
-//function to show results
 
 $(document).ready(function () {
 	var questionIndex = 0;
-	var time = 15;
 	var correct = 0;
 	var incorrect = 0;
 	var unanswered = 0;
@@ -27,15 +20,13 @@ $(document).ready(function () {
 	}
 
 	function startGame() {
-		$("#startGame").hide();
-		qAndA();
-		timer();
-		timeZero();
+		questionIndex = 0;
+		correct = 0;
+		incorrect = 0;
+		unanswered = 0;
 	}
-
-	function timer() {
-		ticker = setInterval(countdown, 1000);
-		function countdown() {
+	
+	function countdown() {
 			if (time < 1) {
 				clearInterval(ticker);
 				timeZero();
@@ -46,14 +37,18 @@ $(document).ready(function () {
 			}
 
 			$("#timer").html("<h1>" + time + "</h1>");
+
 		}
-	}
+
+	function timer() {
+			ticker = setInterval(countdown, 1000);		
+		}
 
 	function win() {
 		$("#game").html("<p>That's right!</p>");
 		correct++;
 		$("#game").append(questionArray[questionIndex].image);
-		setTimeout(nextQuestion, 4000);
+		setTimeout(nextQuestion, 2000);
 		questionIndex++;
 	}
 
@@ -85,7 +80,7 @@ $(document).ready(function () {
 
 	function nextQuestion() {
 		if (questionIndex < questionArray.length) {
-			time = 5;
+			time = 10;
 			$("#game").html("<span id='timer'>" + "<h1>" + time + "</h1>");
 			qAndA();
 			timer();
@@ -103,14 +98,7 @@ $(document).ready(function () {
 			"<p><strong>Unanswered: </p>" + unanswered);
 		$("#game").append("<h1 id='startGame'>Another Round?</h1>")
 		$("#startGame").click(nextQuestion);
-		gameReset();
-	}
-
-	function gameReset() {
-		questionIndex = 0;
-		correct = 0;
-		incorrect = 0;
-		unanswered = 0;
+		startGame();
 	}
 
 	$("#startGame").click(nextQuestion);
