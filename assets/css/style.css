@@ -3,3 +3,22 @@ body {
     text-align: center;
     background-color: yellow;
 }
+
+h3 {
+    border: solid 5px red;
+    width: 18%;
+    margin-left: 608px;  
+}
+
+.choices {
+	text-align: center;
+	border-radius: 5%;
+	margin: 1% 35%;
+}
+
+.choices:hover {
+	background-color: red;
+	color: white;
+}
+
+
